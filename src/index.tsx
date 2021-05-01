@@ -1,6 +1,12 @@
-import { render } from "react-dom";
-
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
 import App from "./App";
+import { AppStateProvider } from "./AppStateContext";
 
-const rootElement = document.getElementById("root");
-render(<App />, rootElement);
+ReactDOM.render(
+  <AppStateProvider>
+    <App />
+  </AppStateProvider>,
+  document.getElementById("root")
+);
