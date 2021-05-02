@@ -6,12 +6,12 @@ import { AddNewItem } from "./AddNewItem";
 import { useAppState } from "./AppStateContext";
 
 export default function App() {
-  const { state } = useAppState();
+  const { state, dispatch } = useAppState();
 
   return (
     <AppContainer>
       {state.lists.map((list, i) => (
-        <Column text={list.text} key={list.id} index={i} />
+        <Column text={list.text} key={list.id} index={i} id={list.id} />
       ))}
       {/* <Column text="To Do">
         <Card text="Generate app scaffold" />
@@ -22,7 +22,10 @@ export default function App() {
       <Column text="Done">
         <Card text="Begin to use static typings" />
       </Column> */}
-      <AddNewItem toggleButtonText="+ Add another list" onAdd={console.log} />
+      <AddNewItem
+        toggleButtonText="+ Add another list"
+        onAdd={(text) => dispatch({ type: "ADD_LIST", payload: text })}
+      />
     </AppContainer>
   );
 }
